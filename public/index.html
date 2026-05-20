@@ -1,1 +1,107 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Search</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="bg-glow g1"></div>
+  <div class="bg-glow g2"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">N</div>
+      <div>
+        <div class="title">Nova Search</div>
+        <div class="subtitle">Manual web crawler search engine</div>
+      </div>
+    </div>
+
+    <button id="settingsBtn" class="icon-btn">⚙</button>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Fast dark search over your own crawled index.</h1>
+      <p>
+        Add seed URLs, crawl them with the backend, then search the saved index from this UI.
+      </p>
+
+      <form id="searchForm" class="searchbar">
+        <input id="searchInput" type="text" placeholder="Search the index..." spellcheck="false" />
+        <button class="search-btn" type="submit">Search</button>
+      </form>
+
+      <div class="meta">
+        <span id="status" class="pill">Ready</span>
+        <span id="stats" class="muted"></span>
+      </div>
+
+      <div id="historyWrap" class="history hidden">
+        <div class="section-label">Recent searches</div>
+        <div id="historyList" class="chips"></div>
+      </div>
+    </section>
+
+    <section class="results-wrap">
+      <div id="results" class="results"></div>
+
+      <div class="pager">
+        <button id="prevPage" class="secondary-btn" disabled>Previous</button>
+        <div id="pageLabel" class="page-label">Page 1</div>
+        <button id="nextPage" class="secondary-btn" disabled>Next</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="overlay" class="overlay hidden" aria-hidden="true">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Settings</h2>
+        <button id="closeSettings" class="icon-btn">✕</button>
+      </div>
+
+      <div class="grid">
+        <label class="field">
+          <span>API base URL</span>
+          <input id="apiBase" type="text" placeholder="http://localhost:3000/api/search" />
+        </label>
+
+        <label class="field">
+          <span>Results per page</span>
+          <input id="resultsPerPage" type="number" min="1" max="50" />
+        </label>
+
+        <label class="field wide">
+          <span>Blocked domains</span>
+          <textarea id="blockedDomains" rows="4" placeholder="example.com&#10;ads.example.net"></textarea>
+        </label>
+
+        <label class="toggle">
+          <input id="rememberHistory" type="checkbox" />
+          <span>Remember recent searches locally</span>
+        </label>
+
+        <label class="toggle">
+          <input id="hideBlocked" type="checkbox" />
+          <span>Hide blocked domains in search results</span>
+        </label>
+      </div>
+
+      <div class="panel-foot">
+        <button id="resetBtn" class="secondary-btn">Reset</button>
+        <button id="saveBtn" class="search-btn">Save</button>
+      </div>
+
+      <p class="note">
+        Set this page to your API host if the UI is on GitHub Pages. The crawler and API cannot run on Pages itself.
+      </p>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
